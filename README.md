@@ -17,3 +17,6 @@
 ## consumerProguardFiles说明
 * 具体使用请查看proguardlib
 * app内不用做任何改动
+
+## 玩出花--dictionary.txt
+* 已经确认：的确可以玩出花
