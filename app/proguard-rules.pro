@@ -18,6 +18,7 @@
 #-printmapping mapping.txt
 
 -obfuscationdictionary dictionary.txt
+-keepattributes SourceFile,LineNumberTable
 
 -dontwarn sun.misc.**
 
