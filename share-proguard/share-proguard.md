@@ -177,8 +177,6 @@
 
 ---
 ## 经验之谈
-* 代码混淆的时候记得加上在混淆文件里面记得加上这句--keep住源文件以及行号： 
- > -keepattributes SourceFile,LineNumberTable
 * 保留mapping文件，方便后续的排查问题
 * 编译时，出现有warning通不过，定位到warning，然后keep那个对应的包下的文件，同时添加dontwarn对应包下的文件
  > -keep class com.xxx.\*\* {*;}  
