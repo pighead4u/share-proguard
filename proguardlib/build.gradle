@@ -3,14 +3,14 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
-    publishNonDefault true
+    publishNonDefault true  //打包用：无论怎样，都打出debug和release包
 
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        consumerProguardFiles 'proguard-lib-rules.pro'
+        consumerProguardFiles 'proguard-lib-rules.pro', 'proguard-okhttp.pro'
     }
     buildTypes {
         debug {
@@ -29,4 +29,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.1'
 
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.squareup.okhttp3:okhttp:3.5.0'
 }

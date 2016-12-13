@@ -17,7 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GlideActivity"></activity>
+        <activity android:name=".GlideActivity" />
+        <activity android:name=".OKHttpActivity"></activity>
     </application>
 
 </manifest>

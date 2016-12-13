@@ -9,6 +9,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private Button mBtnGlide;
+    private Button mBtnOKHttp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +20,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
         mBtnGlide = (Button) findViewById(R.id.main_btn_glide);
+        mBtnOKHttp = (Button) findViewById(R.id.main_btn_okhttp);
     }
 
     private void initData() {
@@ -30,11 +33,25 @@ public class MainActivity extends AppCompatActivity {
                 gotoGlideActivity();
             }
         });
+
+        mBtnOKHttp.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                gotoOKHttpActivity();
+            }
+        });
     }
 
     private void gotoGlideActivity() {
         Intent intent = new Intent();
         intent.setClass(this, GlideActivity.class);
+        startActivity(intent);
+    }
+
+    private void gotoOKHttpActivity() {
+        Intent intent = new Intent();
+        intent.setClass(this, OKHttpActivity.class);
         startActivity(intent);
     }
 }
