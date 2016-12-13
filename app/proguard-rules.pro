@@ -17,6 +17,8 @@
 #}
 #-printmapping mapping.txt
 
+-obfuscationdictionary dictionary.txt
+
 -dontwarn sun.misc.**
 
 -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
@@ -31,3 +33,4 @@
 -keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
     rx.internal.util.atomic.LinkedQueueNode consumerNode;
 }
+
