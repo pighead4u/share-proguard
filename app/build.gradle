@@ -1,37 +1,38 @@
 apply plugin: 'com.android.application'
 
+def commitCount = Integer.parseInt('git rev-list master --count'.execute().text.trim())
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.1"
-    defaultConfig {
-        applicationId "com.pansijing.sharedemo"
-        minSdkVersion 21
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+  compileSdkVersion 25
+  buildToolsVersion "25.0.1"
+  defaultConfig {
+    applicationId "com.pansijing.sharedemo"
+    minSdkVersion 21
+    targetSdkVersion 25
+    versionCode commitCount
+    versionName "1.0"
+  }
+  buildTypes {
+    debug {
+      minifyEnabled true
+      zipAlignEnabled true
+      shrinkResources true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
-    buildTypes {
-        debug {
-            minifyEnabled true
-            zipAlignEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
 
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+    release {
+      minifyEnabled true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
+  }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.0.1'
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+  compile 'com.android.support:appcompat-v7:25.0.1'
 
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.1.6'
+  compile 'io.reactivex:rxandroid:1.2.1'
+  compile 'io.reactivex:rxjava:1.1.6'
 
-    debugCompile project(path: ':proguardlib', configuration: 'debug')
-    releaseCompile project(path: ':proguardlib', configuration: 'release')
+  debugCompile project(path: ':proguardlib', configuration: 'debug')
+  releaseCompile project(path: ':proguardlib', configuration: 'release')
 }

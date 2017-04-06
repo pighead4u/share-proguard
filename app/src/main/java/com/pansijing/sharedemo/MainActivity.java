@@ -1,57 +1,59 @@
 package com.pansijing.sharedemo;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button mBtnGlide;
-    private Button mBtnOKHttp;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+  private static final String TAG = MainActivity.class.getSimpleName();
 
-        initView();
-        initData();
-    }
+  private Button mBtnGlide;
+  private Button mBtnOKHttp;
 
-    private void initView() {
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
 
-        mBtnGlide = (Button) findViewById(R.id.main_btn_glide);
-        mBtnOKHttp = (Button) findViewById(R.id.main_btn_okhttp);
-    }
+    Log.e(TAG, "onCreate: " + BuildConfig.VERSION_CODE);
 
-    private void initData() {
-        mBtnGlide.setOnClickListener(new View.OnClickListener() {
+    initView();
+    initData();
+  }
 
-            @Override
-            public void onClick(View view) {
-                gotoGlideActivity();
-            }
-        });
+  private void initView() {
+    mBtnGlide = (Button) findViewById(R.id.main_btn_glide);
+    mBtnOKHttp = (Button) findViewById(R.id.main_btn_okhttp);
+  }
 
-        mBtnOKHttp.setOnClickListener(new View.OnClickListener() {
+  private void initData() {
+    mBtnGlide.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                gotoOKHttpActivity();
-            }
-        });
-    }
+      @Override public void onClick(View view) {
+        gotoGlideActivity();
+      }
+    });
 
-    private void gotoGlideActivity() {
-        Intent intent = new Intent();
-        intent.setClass(this, GlideActivity.class);
-        startActivity(intent);
-    }
+    mBtnOKHttp.setOnClickListener(new View.OnClickListener() {
 
-    private void gotoOKHttpActivity() {
-        Intent intent = new Intent();
-        intent.setClass(this, OKHttpActivity.class);
-        startActivity(intent);
-    }
+      @Override public void onClick(View view) {
+        gotoOKHttpActivity();
+      }
+    });
+  }
+
+  private void gotoGlideActivity() {
+    Intent intent = new Intent();
+    intent.setClass(this, GlideActivity.class);
+    startActivity(intent);
+  }
+
+  private void gotoOKHttpActivity() {
+    Intent intent = new Intent();
+    intent.setClass(this, OKHttpActivity.class);
+    startActivity(intent);
+  }
 }
