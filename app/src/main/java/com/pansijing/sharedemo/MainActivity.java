@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.pansijing.sharedemo.BuildConfig;
+
 public class MainActivity extends AppCompatActivity {
 
   private static final String TAG = MainActivity.class.getSimpleName();
@@ -18,7 +20,10 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    Log.e(TAG, "onCreate: " + BuildConfig.VERSION_CODE);
+    if (BuildConfig.DEBUG) {
+      Log.e(TAG, "onCreate: " + BuildConfig.VERSION_CODE);
+      Log.e(TAG, "onCreate: " + BuildConfig.yourName);
+    }
 
     initView();
     initData();

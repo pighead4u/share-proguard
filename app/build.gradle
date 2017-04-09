@@ -1,9 +1,11 @@
 apply plugin: 'com.android.application'
 
 def commitCount = Integer.parseInt('git rev-list master --count'.execute().text.trim())
+
 android {
   compileSdkVersion 25
   buildToolsVersion "25.0.1"
+
   defaultConfig {
     applicationId "com.pansijing.sharedemo"
     minSdkVersion 21
@@ -11,16 +13,21 @@ android {
     versionCode commitCount
     versionName "1.0"
   }
+
   buildTypes {
     debug {
-      minifyEnabled true
-      zipAlignEnabled true
-      shrinkResources true
+      buildConfigField "String", "yourName", "\"pighead\""
+      resValue "string", "app_name", "Bilibili-debug"
+
+      minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
 
     release {
-      minifyEnabled true
+      buildConfigField "String", "yourName", "\"pighead\""
+      resValue "string", "app_name", "Bilibili-release"
+
+      minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
@@ -36,3 +43,9 @@ dependencies {
   debugCompile project(path: ':proguardlib', configuration: 'debug')
   releaseCompile project(path: ':proguardlib', configuration: 'release')
 }
+
+task copyApk(type: Copy) {
+  from("$buildDir/outputs/apk/")
+  into("../apks/")
+}
+

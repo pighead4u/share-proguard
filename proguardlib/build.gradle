@@ -29,5 +29,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.1'
 
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.squareup.okhttp3:okhttp:3.5.0'
+    compile('com.squareup.okhttp3:okhttp:3.5.0') {
+        transitive = false
+    }
 }
