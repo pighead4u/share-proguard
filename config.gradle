@@ -1,0 +1,8 @@
+ext {
+  android = [compileSdkVersion: 25,
+             buildToolsVersion: "25.0.2",
+             applicationId    : "com.pansijing.sharedemo",
+             minSdkVersion    : 21,
+             targetSdkVersion : 25,
+             versionName      : "1.0.0"]
+}

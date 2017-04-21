@@ -1,17 +1,32 @@
 apply plugin: 'com.android.application'
 
+
+tasks.whenTaskAdded { task ->
+  if (task.name.toLowerCase().contains('test')
+   || task.name.toLowerCase().contains('mock')) {
+    task.enabled = false
+
+    println "-----------------------------" + task.name
+  }
+}
+
+
 def commitCount = Integer.parseInt('git rev-list master --count'.execute().text.trim())
 
 android {
-  compileSdkVersion 25
-  buildToolsVersion "25.0.1"
+  compileSdkVersion rootProject.ext.android.compileSdkVersion
+  buildToolsVersion rootProject.ext.android.buildToolsVersion
 
   defaultConfig {
-    applicationId "com.pansijing.sharedemo"
-    minSdkVersion 21
-    targetSdkVersion 25
+    applicationId rootProject.ext.android.applicationId
+    minSdkVersion rootProject.ext.android.minSdkVersion
+    targetSdkVersion rootProject.ext.android.targetSdkVersion
     versionCode commitCount
     versionName "1.0"
+
+    ndk {
+      abiFilters "armeabi-v7a","armeabi"
+    }
   }
 
   buildTypes {
@@ -35,13 +50,12 @@ android {
 
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
-  compile 'com.android.support:appcompat-v7:25.0.1'
+  compile 'com.android.support:appcompat-v7:25.3.0'
 
   compile 'io.reactivex:rxandroid:1.2.1'
   compile 'io.reactivex:rxjava:1.1.6'
 
-  debugCompile project(path: ':proguardlib', configuration: 'debug')
-  releaseCompile project(path: ':proguardlib', configuration: 'release')
+  compile project(':proguardlib')
 }
 
 task copyApk(type: Copy) {
